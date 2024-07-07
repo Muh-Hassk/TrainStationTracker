@@ -17,6 +17,7 @@ namespace TrainStationTracker.API
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IDbContext, Dbcontext>();
             var app = builder.Build();
+            // Master Locally
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
