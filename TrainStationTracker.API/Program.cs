@@ -1,5 +1,9 @@
 using TrainStationTracker.core.ICommon;
+using TrainStationTracker.core.IRepository;
+using TrainStationTracker.core.IService;
 using TrainStationTracker.infra.Common;
+using TrainStationTracker.infra.Repository;
+using TrainStationTracker.infra.Service;
 
 namespace TrainStationTracker.API
 {
@@ -16,6 +20,8 @@ namespace TrainStationTracker.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IDbContext, Dbcontext>();
+            builder.Services.AddScoped<ITrainStationRepository, TrainStationRepository>();
+            builder.Services.AddScoped<ITrainStationService, TrainStationService>();
             var app = builder.Build();
             // Master Locally
 
