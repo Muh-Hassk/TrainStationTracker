@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TrainStationTracker.core.ICommon;
 using TrainStationTracker.core.IRepository;
 using TrainStationTracker.core.IService;
@@ -22,6 +25,24 @@ namespace TrainStationTracker.API
             builder.Services.AddScoped<IDbContext, Dbcontext>();
             builder.Services.AddScoped<ITrainStationRepository, TrainStationRepository>();
             builder.Services.AddScoped<ITrainStationService, TrainStationService>();
+            builder.Services.AddScoped<ILoginRepository,LoginRepository>();
+            builder.Services.AddScoped<ILoginService, LoginService>();
+
+
+            builder.Services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,// H,P, Sig => H, P + secret
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Albaraa Salman Alshehry, Mohammad Hassan ALkuzaea , Amzan Abdullah Aldowagri")),
+                ClockSkew = TimeSpan.Zero
+            }); ;
+
             var app = builder.Build();
             // Master Locally
 
@@ -33,6 +54,8 @@ namespace TrainStationTracker.API
             }
             app.UseHttpsRedirection();
 
+            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

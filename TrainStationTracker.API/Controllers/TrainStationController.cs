@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainStationTracker.core.Data;
@@ -19,6 +20,7 @@ namespace TrainStationTracker.API.Controllers
         }
 
         [HttpGet]
+        [CheckClaims("RoleId", "1")]
         public Task<List<Trainstation>> GetAllTrainStations()
         {
             return _trainStationService.GetAllTrainStations();
