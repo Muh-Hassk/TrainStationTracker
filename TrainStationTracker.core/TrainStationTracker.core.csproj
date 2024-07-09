@@ -6,11 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="DTO\NewFolder\**" />
-    <EmbeddedResource Remove="DTO\NewFolder\**" />
-    <None Remove="DTO\NewFolder\**" />
-  </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="6.21.140" />
