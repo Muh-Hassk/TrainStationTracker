@@ -24,6 +24,21 @@ namespace TrainStationTracker.infra.Repository
             _dbContext = dbContext;
         }
 
+        public async Task Register(Register user)
+        {
+            user.Createdat= DateTime.Now;
+            var param = new DynamicParameters();
+            param.Add("User_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("Pass", user.Password, DbType.String, direction: ParameterDirection.Input);
+            param.Add("first_name", user.Firstname, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("last_name", user.Lastname, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("Email", user.Email, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("Role_id", user.Roleid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("Created_at",user.Createdat,dbType:DbType.DateTime, direction: ParameterDirection.Input);
+            var result = await _dbContext.Connection.ExecuteAsync("USERS_PACKAGE.CreateUser", param, commandType: CommandType.StoredProcedure);
+
+        }
+
         public UserLogin User(UserLogin user)
         {
             var p = new DynamicParameters();

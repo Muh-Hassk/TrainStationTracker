@@ -11,6 +11,7 @@ namespace TrainStationTracker.core.IRepository
     public interface ILoginRepository
     {
         UserLogin User(UserLogin user);
-        
+        Task Register(Register user);
+
     }
 }

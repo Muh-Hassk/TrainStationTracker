@@ -6,7 +6,7 @@ using TrainStationTracker.core.IService;
 
 namespace TrainStationTracker.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -29,6 +29,11 @@ namespace TrainStationTracker.API.Controllers
             {
                 return Ok(result);
             }
+        }
+        [HttpPost]
+        public async Task Register(Register user)
+        {
+            await _loginService.Register(user);
         }
     }
 }

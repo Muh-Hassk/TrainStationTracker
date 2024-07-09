@@ -11,5 +11,6 @@ namespace TrainStationTracker.core.IService
     public interface ILoginService
     {
        string  User(UserLogin user);
+        Task Register(Register user);
     }
 }
