@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainStationTracker.core.Data;
+using TrainStationTracker.core.DTO;
 using TrainStationTracker.core.IService;
 
 namespace TrainStationTracker.API.Controllers
@@ -22,5 +23,13 @@ namespace TrainStationTracker.API.Controllers
         {
             return _trainStationService.GetAllTrainStations();
         }
+
+        [HttpPost]
+        public async Task<List<Trainstation>> GetTrainStationByName([FromBody] Name name)
+        {
+            return await _trainStationService.GetTrainStationByName(name);
+        }
+
     }
+
 }

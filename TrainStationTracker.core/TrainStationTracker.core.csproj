@@ -10,8 +10,4 @@
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="6.21.140" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
-
 </Project>
