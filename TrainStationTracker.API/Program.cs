@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
 using System.Text;
+using TrainStationTracker.core.Data;
 using TrainStationTracker.core.ICommon;
 using TrainStationTracker.core.IRepository;
 using TrainStationTracker.core.IService;
@@ -22,12 +25,16 @@ namespace TrainStationTracker.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            
             builder.Services.AddScoped<IDbContext, Dbcontext>();
             builder.Services.AddScoped<ITrainStationRepository, TrainStationRepository>();
             builder.Services.AddScoped<ITrainStationService, TrainStationService>();
             builder.Services.AddScoped<ILoginRepository,LoginRepository>();
             builder.Services.AddScoped<ILoginService, LoginService>();
-
+            builder.Services.AddScoped<IBookingService, BookingService>();  
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddDbContext<ModelContext>(options =>
+                options.UseOracle(builder.Configuration.GetConnectionString("DBConnectionString")));
 
             builder.Services.AddAuthentication(x =>
             {

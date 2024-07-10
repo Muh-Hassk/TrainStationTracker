@@ -44,7 +44,7 @@ namespace TrainStationTracker.infra.Service
                 var claims = new List<Claim>
                 {
                     new Claim("RoleId" , result.Roleid.ToString()),
-                    new Claim("UserId", result.Userid.ToString())
+                    new Claim("Userid", result.Userid.ToString())
                 };
 
                 var tokenOptions = new JwtSecurityToken(

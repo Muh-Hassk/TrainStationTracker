@@ -45,7 +45,7 @@ namespace TrainStationTracker.infra.Repository
                 commandType: CommandType.StoredProcedure
             );
 
-            var x = _modelContext.Trainstations.Include<>
+            //var x = _modelContext.Trainstations.Include<>
 
 
 
