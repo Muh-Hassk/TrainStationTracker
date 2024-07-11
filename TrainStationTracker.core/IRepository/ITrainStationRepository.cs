@@ -13,6 +13,10 @@ namespace TrainStationTracker.core.IRepository
         public Task<List<Trainstation>> GetAllTrainStations();
 
         public Task<List<Trainstation>> GetTrainStationByName(Name name);
+        Task<Trainstation> GetTrainstationById(int id);
+        Task CreateTrainstation(Trainstation trainstation);
+        Task UpdateTrainstation(UpdateTrainstation trainstation);
+        Task DeleteTrainstation(int id);
 
     }
 }

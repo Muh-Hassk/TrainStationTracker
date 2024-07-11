@@ -31,6 +31,29 @@ namespace TrainStationTracker.API.Controllers
         {
             return await _trainStationService.GetTrainStationByName(name);
         }
+        [HttpGet("{id}")]
+        public async Task<Trainstation> GetTrainstationById(int id)
+        {
+            return await _trainStationService.GetTrainstationById(id);
+        }
+        [HttpPost]
+        [CheckClaims("RoleId", "1")]
+        public async Task CreateTrainstation(Trainstation trainstation)
+        {
+            await _trainStationService.CreateTrainstation(trainstation);
+        }
+        [HttpPut("{id}")]
+        [CheckClaims("RoleId", "1")]
+        public async Task UpdateTrainstation(UpdateTrainstation trainstation)
+        {
+            await _trainStationService.UpdateTrainstation(trainstation);
+        }
+        [HttpDelete("{id}")]
+        [CheckClaims("RoleId", "1")]
+        public async Task DeleteTrainstation(int id)
+        {
+            await _trainStationService.DeleteTrainstation(id);
+        }
 
     }
 
