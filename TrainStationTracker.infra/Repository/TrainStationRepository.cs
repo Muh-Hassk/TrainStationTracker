@@ -16,12 +16,12 @@ namespace TrainStationTracker.infra.Repository
     public class TrainStationRepository : ITrainStationRepository
     {
         private readonly IDbContext _dbContext;
-        private readonly ModelContext _modelContext;
+        
 
-        public TrainStationRepository(IDbContext dbContext, ModelContext modelContext)
+        public TrainStationRepository(IDbContext dbContext)
         {
             _dbContext = dbContext;
-            _modelContext = modelContext;
+           
         }
         public async Task<List<Trainstation>> GetAllTrainStations()
         {
@@ -45,7 +45,7 @@ namespace TrainStationTracker.infra.Repository
                 commandType: CommandType.StoredProcedure
             );
 
-            var x = _modelContext.Trainstations.Include<>
+          
 
 
 

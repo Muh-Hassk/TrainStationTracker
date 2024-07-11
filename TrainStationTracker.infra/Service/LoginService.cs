@@ -22,7 +22,12 @@ namespace TrainStationTracker.infra.Service
         {
             _loginRepository = loginRepository;
         }
-        
+
+        public async Task<List<User>> GetAllUsers()
+        {
+           return await _loginRepository.GetAllUsers();   
+        }
+
         public async Task Register(Register user)
         {
             await _loginRepository.Register(user);

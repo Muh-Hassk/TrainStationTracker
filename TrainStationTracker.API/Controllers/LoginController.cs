@@ -35,5 +35,10 @@ namespace TrainStationTracker.API.Controllers
         {
             await _loginService.Register(user);
         }
+        [HttpGet]
+        public async Task<List<User>> GetAllUsers()
+        {
+            return await _loginService.GetAllUsers();
+        }
     }
 }

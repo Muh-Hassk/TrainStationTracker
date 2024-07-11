@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TrainStationTracker.core.Data;
+using TrainStationTracker.core.DTO;
+using TrainStationTracker.core.IRepository;
+using TrainStationTracker.core.IService;
+
+namespace TrainStationTracker.infra.Service
+{
+    public class TripService : ITripService
+    {
+        private readonly ITripRepository _tripRepository;
+
+        public TripService(ITripRepository tripRepository)
+        {
+            _tripRepository = tripRepository;
+        }
+
+        public async Task CreateTrip(TripsDTO trip)
+        {
+            await _tripRepository.CreateTrip(trip);
+        }
+
+        public async Task DeleteTrip(int id)
+        {
+            await _tripRepository.DeleteTrip(id);
+        }
+
+        public async Task<List<Trip>> GetAllTrips()
+        {
+          return  await _tripRepository.GetAllTrips();
+        }
+
+        public async Task<Trip> GetTripById(int id)
+        {
+           return await _tripRepository.GetTripById(id);  
+        }
+
+        public async Task UpdateTrip(TripsDTO trip)
+        {
+            await _tripRepository.UpdateTrip(trip);
+        }
+    }
+}

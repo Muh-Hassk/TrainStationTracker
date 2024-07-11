@@ -27,6 +27,9 @@ namespace TrainStationTracker.API
             builder.Services.AddScoped<ITrainStationService, TrainStationService>();
             builder.Services.AddScoped<ILoginRepository,LoginRepository>();
             builder.Services.AddScoped<ILoginService, LoginService>();
+            builder.Services.AddScoped<ITripRepository, TripRepository>();
+            builder.Services.AddScoped<ITripService, TripService>();
+            
 
 
             builder.Services.AddAuthentication(x =>

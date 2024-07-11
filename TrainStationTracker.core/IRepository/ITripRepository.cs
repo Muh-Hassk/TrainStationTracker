@@ -8,12 +8,12 @@ using TrainStationTracker.core.DTO;
 
 namespace TrainStationTracker.core.IRepository
 {
-    public interface ILoginRepository
+    public interface ITripRepository
     {
-        UserLogin User(UserLogin user);
-        Task Register(Register user);
-        Task<List<User>> GetAllUsers();
-
-
+        Task<List<Trip>> GetAllTrips();
+        Task<Trip> GetTripById(int id);
+        Task CreateTrip(TripsDTO trip);
+        Task UpdateTrip(TripsDTO trip);
+        Task DeleteTrip(int id);
     }
 }

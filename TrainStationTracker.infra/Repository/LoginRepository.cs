@@ -24,6 +24,12 @@ namespace TrainStationTracker.infra.Repository
             _dbContext = dbContext;
         }
 
+        public async Task<List<User>> GetAllUsers()
+        {
+            var result = await _dbContext.Connection.QueryAsync<User>("USERS_PACKAGE.GetAllUsers", commandType:CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public async Task Register(Register user)
         {
             user.Createdat= DateTime.Now;
