@@ -28,9 +28,19 @@ namespace TrainStationTracker.infra.Service
            return await _loginRepository.GetAllUsers();   
         }
 
+        public async Task<User> GetUserById(int id)
+        {
+            return await _loginRepository.GetUserById(id);
+        }
+
         public async Task Register(Register user)
         {
             await _loginRepository.Register(user);
+        }
+
+        public async Task UpdateProfile(UpdatProfile user)
+        {
+            await _loginRepository.UpdateProfile(user);
         }
 
         public string User(UserLogin user)

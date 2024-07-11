@@ -13,6 +13,8 @@ namespace TrainStationTracker.core.IRepository
         UserLogin User(UserLogin user);
         Task Register(Register user);
         Task<List<User>> GetAllUsers();
+        Task<User> GetUserById(int id);
+        Task UpdateProfile(UpdatProfile user);
 
 
     }
