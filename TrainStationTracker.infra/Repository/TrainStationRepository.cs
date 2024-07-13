@@ -77,6 +77,7 @@ namespace TrainStationTracker.infra.Repository
             return result.ToList();
         }
 
+
         public async Task UpdateTrainstation(UpdateTrainstation trainstation)
         {
            
@@ -86,6 +87,7 @@ namespace TrainStationTracker.infra.Repository
             param.Add("Lat", trainstation.Latitude, DbType.Decimal, direction: ParameterDirection.Input);
             param.Add("Longi", trainstation.Longitude, dbType: DbType.Decimal, direction: ParameterDirection.Input);
            
+
 
             var result = await _dbContext.Connection.ExecuteAsync("TRAINSTATION_PACKAGE.UpdateStation", param, commandType: CommandType.StoredProcedure);
         }

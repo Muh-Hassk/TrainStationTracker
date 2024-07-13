@@ -20,7 +20,7 @@ namespace TrainStationTracker.API.Controllers
         }
 
         [HttpGet]
-        //[CheckClaims("RoleId", "1")]
+
         public Task<List<Trainstation>> GetAllTrainStations()
         {
             return _trainStationService.GetAllTrainStations();

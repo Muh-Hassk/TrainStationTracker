@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using TrainStationTracker.core.Data;
+
 using TrainStationTracker.core.DTO;
 using TrainStationTracker.core.IService;
 
@@ -10,6 +12,7 @@ namespace TrainStationTracker.API.Controllers
     [ApiController]
     public class TripsController : ControllerBase
     {
+
         private readonly ITripService _tripService;
 
         public TripsController(ITripService tripService)
@@ -43,6 +46,12 @@ namespace TrainStationTracker.API.Controllers
         public async Task UpdateTrip(TripsDTO trip)
         {
             await _tripService.UpdateTrip(trip);
+        [HttpGet]
+        [Route("{startDate}/{endDate}")]
+        public List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            return _tripsService.SearchTripsBetweenDates(startDate, endDate);
+
         }
     }
 }
