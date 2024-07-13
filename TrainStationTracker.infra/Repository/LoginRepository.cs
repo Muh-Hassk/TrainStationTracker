@@ -24,6 +24,20 @@ namespace TrainStationTracker.infra.Repository
             _dbContext = dbContext;
         }
 
+        public async Task<List<User>> GetAllUsers()
+        {
+            var result = await _dbContext.Connection.QueryAsync<User>("USERS_PACKAGE.GetAllUsers", commandType:CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public async Task<User> GetUserById(int id)
+        {
+            var param = new DynamicParameters();
+            param.Add("User_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = await _dbContext.Connection.QueryAsync<User>("USERS_PACKAGE.GetUserById", param, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+        }
+
         public async Task Register(Register user)
         {
             user.Createdat= DateTime.Now;
@@ -39,7 +53,22 @@ namespace TrainStationTracker.infra.Repository
 
         }
 
-        public UserLogin User(UserLogin user)
+        public async Task UpdateProfile(UpdatProfile user)
+        {
+           
+            var param = new DynamicParameters();
+            param.Add("User_id", user.Userid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("new_User_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("new_Password", user.Password, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("new_email", user.Email, DbType.String, direction: ParameterDirection.Input);
+            
+            param.Add("FIRST_NAME", user.Firstname, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("LAST_NAME", user.Lastname, dbType: DbType.String, direction: ParameterDirection.Input);
+           
+            var result = await _dbContext.Connection.ExecuteAsync("USERS_PACKAGE.UpdateUser", param, commandType: CommandType.StoredProcedure);
+        }
+
+        public UserLogin Login(UserLogin user)
         {
             var p = new DynamicParameters();
             p.Add("user_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);

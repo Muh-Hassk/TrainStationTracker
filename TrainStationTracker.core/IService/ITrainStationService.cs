@@ -15,6 +15,10 @@ namespace TrainStationTracker.core.IService
 
 
         public Task<List<Trainstation>> GetTrainStationByName(Name name);
+        Task<Trainstation> GetTrainstationById(int id);
+        Task CreateTrainstation(Trainstation trainstation);
+        Task UpdateTrainstation(UpdateTrainstation trainstation);
+        Task DeleteTrainstation(int id);
 
     }
 }
