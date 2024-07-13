@@ -46,11 +46,12 @@ namespace TrainStationTracker.API.Controllers
         public async Task UpdateTrip(TripsDTO trip)
         {
             await _tripService.UpdateTrip(trip);
+        }
         [HttpGet]
         [Route("{startDate}/{endDate}")]
         public List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate)
         {
-            return _tripsService.SearchTripsBetweenDates(startDate, endDate);
+            return _tripService.SearchTripsBetweenDates(startDate, endDate);
 
         }
     }

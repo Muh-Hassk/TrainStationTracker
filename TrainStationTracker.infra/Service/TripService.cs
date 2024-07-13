@@ -18,7 +18,10 @@ namespace TrainStationTracker.infra.Service
         {
             _tripRepository = tripRepository;
         }
-
+        public List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            return _tripRepository.SearchTripsBetweenDates(startDate, endDate);
+        }
         public async Task CreateTrip(TripsDTO trip)
         {
             await _tripRepository.CreateTrip(trip);

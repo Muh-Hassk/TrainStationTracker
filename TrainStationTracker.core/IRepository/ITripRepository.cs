@@ -15,5 +15,7 @@ namespace TrainStationTracker.core.IRepository
         Task CreateTrip(TripsDTO trip);
         Task UpdateTrip(TripsDTO trip);
         Task DeleteTrip(int id);
+        List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate);
+
     }
 }

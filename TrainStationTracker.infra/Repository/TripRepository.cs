@@ -70,5 +70,16 @@ namespace TrainStationTracker.infra.Repository
             param.Add("CREATEDAT", trip.Createdat, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             var result = await _dbContext.Connection.ExecuteAsync("TRIPS_PACKAGE.UpdateTrip", param, commandType: CommandType.StoredProcedure);
         }
+
+        public List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            var p = new DynamicParameters();
+            p.Add("StartDate", startDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            p.Add("EndDate", endDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            var result = _dbContext.Connection.Query<Search>("TRIPS_PACKAGE.SearchTripsBetweenDates", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+
+        }
+
     }
 }
