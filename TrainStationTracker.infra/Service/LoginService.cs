@@ -43,9 +43,9 @@ namespace TrainStationTracker.infra.Service
             await _loginRepository.UpdateProfile(user);
         }
 
-        public string User(UserLogin user)
+        public string Login(UserLogin user)
         {
-            var result = _loginRepository.User(user); 
+            var result = _loginRepository.Login(user); 
 
             if (result == null)
             {

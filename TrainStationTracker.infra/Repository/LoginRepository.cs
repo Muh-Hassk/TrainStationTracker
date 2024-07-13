@@ -68,7 +68,7 @@ namespace TrainStationTracker.infra.Repository
             var result = await _dbContext.Connection.ExecuteAsync("USERS_PACKAGE.UpdateUser", param, commandType: CommandType.StoredProcedure);
         }
 
-        public UserLogin User(UserLogin user)
+        public UserLogin Login(UserLogin user)
         {
             var p = new DynamicParameters();
             p.Add("user_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);

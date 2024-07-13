@@ -74,11 +74,6 @@ namespace TrainStationTracker.infra.Repository
                 p,
                 commandType: CommandType.StoredProcedure
             );
-
-          
-
-
-
             return result.ToList();
         }
 
@@ -90,7 +85,7 @@ namespace TrainStationTracker.infra.Repository
             param.Add("Station_name", trainstation.Stationname, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("Lat", trainstation.Latitude, DbType.Decimal, direction: ParameterDirection.Input);
             param.Add("Longi", trainstation.Longitude, dbType: DbType.Decimal, direction: ParameterDirection.Input);
-            param.Add("Created_date", trainstation.Createdat, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+           
 
             var result = await _dbContext.Connection.ExecuteAsync("TRAINSTATION_PACKAGE.UpdateStation", param, commandType: CommandType.StoredProcedure);
         }

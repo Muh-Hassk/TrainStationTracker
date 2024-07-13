@@ -10,7 +10,7 @@ namespace TrainStationTracker.core.IService
 {
     public interface ILoginService
     {
-       string  User(UserLogin user);
+       string Login(UserLogin user);
         Task Register(Register user);
         Task<List<User>> GetAllUsers();
         Task<User> GetUserById(int id);

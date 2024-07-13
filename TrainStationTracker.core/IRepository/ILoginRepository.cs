@@ -10,7 +10,7 @@ namespace TrainStationTracker.core.IRepository
 {
     public interface ILoginRepository
     {
-        UserLogin User(UserLogin user);
+        UserLogin Login(UserLogin user);
         Task Register(Register user);
         Task<List<User>> GetAllUsers();
         Task<User> GetUserById(int id);
