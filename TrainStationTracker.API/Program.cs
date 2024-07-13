@@ -33,6 +33,17 @@ namespace TrainStationTracker.API
             builder.Services.AddScoped<ILoginService, LoginService>();
             builder.Services.AddScoped<IBookingService, BookingService>();  
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+            builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+            builder.Services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy("policy",
+                builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddDbContext<ModelContext>(options =>
                 options.UseOracle(builder.Configuration.GetConnectionString("DBConnectionString")));
 
@@ -65,7 +76,7 @@ namespace TrainStationTracker.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            app.UseCors("policy");
             app.MapControllers();
 
             app.Run();
