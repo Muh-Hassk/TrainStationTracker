@@ -71,5 +71,10 @@ namespace TrainStationTracker.infra.Service
                 return token;
             }
         }
+
+        public Task<bool> CheckUsername(string username)
+        {
+            return _loginRepository.CheckUsername(username);
+        }
     }
 }

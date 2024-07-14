@@ -17,7 +17,14 @@ namespace TrainStationTracker.API.Controllers
         {
             _loginService = loginService;
         }
-        [HttpPost]
+
+        [HttpGet]
+        public Task<bool> CheckUsername(string username)
+        {
+            return _loginService.CheckUsername(username);
+        }
+    
+    [HttpPost]
         public IActionResult Login(UserLogin user)
         {
             var result = _loginService.Login(user); // result = null, token as string
