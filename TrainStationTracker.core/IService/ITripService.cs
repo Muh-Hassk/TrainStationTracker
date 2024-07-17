@@ -12,6 +12,7 @@ namespace TrainStationTracker.core.IService
     {
         Task<List<Trip>> GetAllTrips();
         Task<Trip> GetTripById(int id);
+        Task<Trip> GetTripsByOriginStation(int id);
         Task CreateTrip(TripsDTO trip);
         Task UpdateTrip(TripsDTO trip);
         Task DeleteTrip(int id);

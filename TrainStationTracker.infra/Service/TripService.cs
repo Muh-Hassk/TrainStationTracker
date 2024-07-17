@@ -36,6 +36,10 @@ namespace TrainStationTracker.infra.Service
         {
           return  await _tripRepository.GetAllTrips();
         }
+        public async Task<Trip> GetTripsByOriginStation(int id)
+        {
+            return await _tripRepository.GetTripsByOriginStation(id);
+        }
 
         public async Task<Trip> GetTripById(int id)
         {

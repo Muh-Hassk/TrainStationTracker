@@ -48,6 +48,14 @@ namespace TrainStationTracker.infra.Repository
             var result = await _dbContext.Connection.QueryAsync<Trip>("TRIPS_PACKAGE.GetAllTrips", commandType:CommandType.StoredProcedure);
             return result.ToList();
         }
+        public async Task<Trip> GetTripsByOriginStation(int id)
+        {
+            var param = new DynamicParameters();
+            param.Add("origin", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = await _dbContext.Connection.QueryAsync<Trip>("TRIPS_PACKAGE.GetTripsByOriginStation", param, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+           
+        }
 
         public async Task<Trip> GetTripById(int id)
         {
