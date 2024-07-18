@@ -37,8 +37,14 @@ namespace TrainStationTracker.API.Controllers
             return await _tripService.GetAllTrips();
         }
         [HttpGet]
+        public async Task<List<Trip>> GetTripsByOriginAndDest(int originId, int destId)
+        {
+            return await _tripService.GetTripsByOriginAndDest(originId, destId);
+        }
+
+        [HttpGet]
         [Route("{id}")]
-        public async Task<Trip> GetTripsByOriginStation(int id)
+        public async Task<List<Trip>> GetTripsByOriginStation(int id)
         {
             return await _tripService.GetTripsByOriginStation(id);
         }

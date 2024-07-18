@@ -12,7 +12,8 @@ namespace TrainStationTracker.core.IRepository
     {
         Task<List<Trip>> GetAllTrips();
         Task<Trip> GetTripById(int id);
-        Task<Trip> GetTripsByOriginStation(int id);
+        Task<List<Trip>> GetTripsByOriginStation(int id);
+        Task<List<Trip>> GetTripsByOriginAndDest(int originId, int destId);
         Task CreateTrip(TripsDTO trip);
         Task UpdateTrip(TripsDTO trip);
         Task DeleteTrip(int id);
