@@ -41,6 +41,7 @@ namespace TrainStationTracker.infra.Repository
         public async Task Register(Register user)
         {
             user.Createdat= DateTime.Now;
+            user.Roleid = 1;
             var param = new DynamicParameters();
             param.Add("User_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("Pass", user.Password, DbType.String, direction: ParameterDirection.Input);
@@ -77,5 +78,18 @@ namespace TrainStationTracker.infra.Repository
             var result = _dbContext.Connection.Query<UserLogin>("USERS_PACKAGE.User_Login", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }
+
+        public async Task<bool> CheckUsername(string username)
+        {
+            var p = new DynamicParameters();
+            p.Add("user_name", username, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("c_id", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+            await _dbContext.Connection.ExecuteAsync("USERS_PACKAGE.CheckuserName", p, commandType: CommandType.StoredProcedure);
+
+            bool isUsernameTaken = p.Get<bool>("c_id");
+            return isUsernameTaken;
+        }
+
     }
 }

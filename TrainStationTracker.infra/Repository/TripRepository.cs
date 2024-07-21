@@ -48,6 +48,24 @@ namespace TrainStationTracker.infra.Repository
             var result = await _dbContext.Connection.QueryAsync<Trip>("TRIPS_PACKAGE.GetAllTrips", commandType:CommandType.StoredProcedure);
             return result.ToList();
         }
+        public async Task<List<Trip>> GetTripsByOriginStation(int id)
+        {
+            var param = new DynamicParameters();
+            param.Add("origin", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = await _dbContext.Connection.QueryAsync<Trip>("TRIPS_PACKAGE.GetTripsByOriginStation", param, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+        public async Task<List<Trip>> GetTripsByOriginAndDest(int originId, int destId)
+        {
+            var p = new DynamicParameters();
+            p.Add("origin", originId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("Dest", destId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            var res = _dbContext.Connection.Query<Trip>("TRIPS_PACKAGE.GetTripsByOriginAndDest", p, commandType: CommandType.StoredProcedure);
+
+            return res.ToList();
+
+        }
 
         public async Task<Trip> GetTripById(int id)
         {
@@ -88,5 +106,4 @@ namespace TrainStationTracker.infra.Repository
             var result = await _dbContext.Connection.QueryAsync<Trip>("TRIPS_PACKAGE.getTripsByDestination", param, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }
-    }
 }

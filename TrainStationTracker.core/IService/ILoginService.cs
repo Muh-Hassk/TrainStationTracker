@@ -16,5 +16,8 @@ namespace TrainStationTracker.core.IService
         Task<User> GetUserById(int id);
         Task UpdateProfile(UpdatProfile user);
 
+        Task<bool> CheckUsername(string username);
+
+
     }
 }
