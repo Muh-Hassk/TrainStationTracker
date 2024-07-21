@@ -61,10 +61,16 @@ namespace TrainStationTracker.API.Controllers
         }
         [HttpGet]
         [Route("{startDate}/{endDate}")]
+
         public List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate)
         {
             return _tripService.SearchTripsBetweenDates(startDate, endDate);
 
+        }
+        [HttpGet("{id}")]
+        public async Task<Trip> GetTripsByDestination(int id)
+        {
+            return await _tripService.GetTripsByDestination(id);
         }
     }
 }
