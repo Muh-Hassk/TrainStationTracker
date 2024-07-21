@@ -18,7 +18,7 @@ namespace TrainStationTracker.core.IService
         Task UpdateTrip(TripsDTO trip);
         Task DeleteTrip(int id);
         List<Search> SearchTripsBetweenDates(DateTime startDate, DateTime endDate);
-        Task<Trip> GetTripsByDestination(int id);
+        Task<List<Trip>> GetTripsByDestination(int id);
 
     }
 }

@@ -68,7 +68,7 @@ namespace TrainStationTracker.API.Controllers
 
         }
         [HttpGet("{id}")]
-        public async Task<Trip> GetTripsByDestination(int id)
+        public async Task<List<Trip>> GetTripsByDestination(int id)
         {
             return await _tripService.GetTripsByDestination(id);
         }

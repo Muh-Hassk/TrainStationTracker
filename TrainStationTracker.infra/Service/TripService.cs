@@ -56,7 +56,7 @@ namespace TrainStationTracker.infra.Service
             await _tripRepository.UpdateTrip(trip);
         }
 
-        public async Task<Trip> GetTripsByDestination(int id)
+        public async Task<List<Trip>> GetTripsByDestination(int id)
         {
             return await _tripRepository.GetTripsByDestination(id);
         }
