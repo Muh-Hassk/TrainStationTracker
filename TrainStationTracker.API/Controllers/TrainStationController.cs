@@ -20,7 +20,6 @@ namespace TrainStationTracker.API.Controllers
         }
 
         [HttpGet]
-
         public Task<List<Trainstation>> GetAllTrainStations()
         {
             return _trainStationService.GetAllTrainStations();

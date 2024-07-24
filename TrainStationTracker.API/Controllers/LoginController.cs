@@ -44,7 +44,6 @@ namespace TrainStationTracker.API.Controllers
             await _loginService.Register(user);
         }
         [HttpGet]
-        [CheckClaims("RoleId", "1")]
         public async Task<List<User>> GetAllUsers()
         {
             return await _loginService.GetAllUsers();

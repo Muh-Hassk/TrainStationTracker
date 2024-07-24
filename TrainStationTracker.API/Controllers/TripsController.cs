@@ -26,7 +26,6 @@ namespace TrainStationTracker.API.Controllers
             await _tripService.CreateTrip(trip);
         }
         [HttpDelete("{id}")]
-        [CheckClaims("RoleId", "1")]
         public async Task DeleteTrip(int id)
         {
             await _tripService.DeleteTrip(id);
