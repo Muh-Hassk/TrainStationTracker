@@ -23,7 +23,6 @@ namespace TrainStationTracker.infra.Repository
 
         public async Task CreateTrip(TripsDTO trip)
         {
-            trip.Departuretime = DateTime.Now;
             trip.Createdat = DateTime.Now;
             var param = new DynamicParameters();
             param.Add("ORGDIST", trip.Originstationid, dbType: DbType.Int32, direction: ParameterDirection.Input);
