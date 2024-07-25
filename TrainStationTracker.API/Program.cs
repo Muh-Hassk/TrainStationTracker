@@ -42,6 +42,12 @@ namespace TrainStationTracker.API
             builder.Services.AddScoped<ITripService, TripService>();
             builder.Services.AddScoped<IReportRepository, ReportRepository>();
             builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
+            builder.Services.AddScoped<IHomePageService, HomePageService>();
+            builder.Services.AddScoped<IAboutUsRepository, AboutUsRepository>();
+            builder.Services.AddScoped<IAboutUsService, AboutUsService>();
+            builder.Services.AddScoped<IContactRepository, ContactRepository>();
+            builder.Services.AddScoped<IContactService, ContactService>();
             builder.Services.AddCors(corsOptions =>
             {
                 corsOptions.AddPolicy("policy",

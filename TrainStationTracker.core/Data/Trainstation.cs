@@ -16,6 +16,7 @@ namespace TrainStationTracker.core.Data
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public DateTime? Createdat { get; set; }
+        public string? Image { get; set; }
 
         public virtual ICollection<Trip> TripDestinationstations { get; set; }
         public virtual ICollection<Trip> TripOriginstations { get; set; }

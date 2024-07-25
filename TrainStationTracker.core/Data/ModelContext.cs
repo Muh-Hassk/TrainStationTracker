@@ -16,7 +16,10 @@ namespace TrainStationTracker.core.Data
         {
         }
 
+        public virtual DbSet<Aboutuspage> Aboutuspages { get; set; } = null!;
         public virtual DbSet<Booking> Bookings { get; set; } = null!;
+        public virtual DbSet<Contactuspage> Contactuspages { get; set; } = null!;
+        public virtual DbSet<Homepage> Homepages { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Testimonial> Testimonials { get; set; } = null!;
         public virtual DbSet<Trainstation> Trainstations { get; set; } = null!;
@@ -28,7 +31,7 @@ namespace TrainStationTracker.core.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseOracle("USER ID=C##TRAINSTATION;PASSWORD=Test321;DATA SOURCE=localhost:1521/xe");
+                optionsBuilder.UseOracle("User Id=C##TRAINSTATION;PASSWORD=Test321;DATA SOURCE=localhost:1521/xe");
             }
         }
 
@@ -36,6 +39,30 @@ namespace TrainStationTracker.core.Data
         {
             modelBuilder.HasDefaultSchema("C##TRAINSTATION")
                 .UseCollation("USING_NLS_COMP");
+
+            modelBuilder.Entity<Aboutuspage>(entity =>
+            {
+                entity.ToTable("ABOUTUSPAGE");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Content)
+                    .HasColumnType("CLOB")
+                    .HasColumnName("CONTENT");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("IMAGE");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("TITLE");
+            });
 
             modelBuilder.Entity<Booking>(entity =>
             {
@@ -69,6 +96,55 @@ namespace TrainStationTracker.core.Data
                     .HasForeignKey(d => d.Userid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USER");
+            });
+
+            modelBuilder.Entity<Contactuspage>(entity =>
+            {
+                entity.ToTable("CONTACTUSPAGE");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAIL");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("PHONE");
+            });
+
+            modelBuilder.Entity<Homepage>(entity =>
+            {
+                entity.ToTable("HOMEPAGE");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Content)
+                    .HasColumnType("CLOB")
+                    .HasColumnName("CONTENT");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("IMAGE");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("TITLE");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -137,6 +213,11 @@ namespace TrainStationTracker.core.Data
                     .HasPrecision(6)
                     .HasColumnName("CREATEDAT")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP\n   ");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("IMAGE");
 
                 entity.Property(e => e.Latitude)
                     .HasColumnType("NUMBER(9,6)")
