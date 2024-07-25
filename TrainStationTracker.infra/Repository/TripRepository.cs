@@ -83,7 +83,7 @@ namespace TrainStationTracker.infra.Repository
             param.Add("DEPTIME", trip.Departuretime, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             param.Add("DURTIME", trip.Duratointime, dbType: DbType.Int32, direction: ParameterDirection.Input);
             param.Add("AVASEATS", trip.Availableseats, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            param.Add("PRICE", trip.Price, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("PRICE_new", trip.Price, dbType: DbType.Int32, direction: ParameterDirection.Input);
             param.Add("CREATEDAT", trip.Createdat, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             var result = await _dbContext.Connection.ExecuteAsync("TRIPS_PACKAGE.UpdateTrip", param, commandType: CommandType.StoredProcedure);
         }

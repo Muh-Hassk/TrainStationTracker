@@ -12,6 +12,5 @@ namespace TrainStationTracker.core.DTO
         public string? Stationname { get; set; } 
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
-        public DateTime? Createdat { get; set; }
     }
 }
