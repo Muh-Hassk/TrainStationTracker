@@ -31,5 +31,12 @@ namespace TrainStationTracker.API.Controllers
         {
             return _reportService.AnnualReport(year);
         }
+
+        [HttpGet]
+
+        public List<Search> Report()
+        {
+            return _reportService.Report();
+        }
     }
 }

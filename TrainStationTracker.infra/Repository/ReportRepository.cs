@@ -37,5 +37,11 @@ namespace TrainStationTracker.infra.Repository
             return result.ToList();
         }
 
+        public List<Search> Report()
+        {
+            var result = _dbContext.Connection.Query<Search>("Bookings_Package.Report", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
     }
 }

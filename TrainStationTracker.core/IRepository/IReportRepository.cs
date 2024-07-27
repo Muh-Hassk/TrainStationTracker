@@ -11,5 +11,7 @@ namespace TrainStationTracker.core.IRepository
     {
         List<Search> MonthlyReport(string month, int year);
         List<Search> AnnualReport(int year);
+        List<Search> Report();
+
     }
 }

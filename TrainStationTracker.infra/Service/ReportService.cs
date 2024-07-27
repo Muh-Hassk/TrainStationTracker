@@ -27,5 +27,9 @@ namespace TrainStationTracker.infra.Service
         {
             return _reportRepository.AnnualReport(year);
         }
+        public List<Search> Report()
+        {
+            return _reportRepository.Report();
+        }
     }
 }
