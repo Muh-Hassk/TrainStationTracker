@@ -18,8 +18,11 @@ namespace TrainStationTracker.API.Controllers
         {
             _trainStationService = trainStationService;
         }
+        
 
         [HttpGet]
+        [Authorize]
+        [CheckClaims("RoleId", "1")]
         public Task<List<Trainstation>> GetAllTrainStations()
         {
             return _trainStationService.GetAllTrainStations();
@@ -36,7 +39,8 @@ namespace TrainStationTracker.API.Controllers
             return await _trainStationService.GetTrainstationById(id);
         }
         [HttpPost]
-        //[CheckClaims("RoleId", "1")]
+        [Authorize]
+        [CheckClaims("RoleId", "1")]
         public async Task CreateTrainstation(Trainstation trainstation)
         {
             await _trainStationService.CreateTrainstation(trainstation);
