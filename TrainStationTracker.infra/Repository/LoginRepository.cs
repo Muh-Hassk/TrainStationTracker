@@ -41,7 +41,7 @@ namespace TrainStationTracker.infra.Repository
         public async Task Register(Register user)
         {
             user.Createdat= DateTime.Now;
-            user.Roleid = 1;
+            user.Roleid = 2;
             var param = new DynamicParameters();
             param.Add("User_name", user.Username, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("Pass", user.Password, DbType.String, direction: ParameterDirection.Input);
