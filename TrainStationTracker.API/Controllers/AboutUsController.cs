@@ -37,6 +37,7 @@ namespace TrainStationTracker.API.Controllers
         [HttpPut]
         public async Task UpdateAboutUsPage(Aboutuspage aboutuspage)
         {
+            aboutuspage.Id = 1;
             await _aboutUsService.UpdateAboutUsPage(aboutuspage);
         }
     }

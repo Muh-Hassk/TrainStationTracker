@@ -20,7 +20,7 @@ namespace TrainStationTracker.API.Controllers
             _tripService = tripService;
         }
         [HttpPost]
-        [CheckClaims("RoleId", "1")]
+        //[CheckClaims("RoleId", "1")]
         public async Task CreateTrip(TripsDTO trip)
         {
             await _tripService.CreateTrip(trip);
@@ -53,7 +53,7 @@ namespace TrainStationTracker.API.Controllers
             return await _tripService.GetTripById(id);
         }
         [HttpPut]
-        [CheckClaims("RoleId", "1")]
+        //[CheckClaims("RoleId", "1")]
         public async Task UpdateTrip(TripsDTO trip)
         {
             await _tripService.UpdateTrip(trip);

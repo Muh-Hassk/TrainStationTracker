@@ -15,5 +15,6 @@ namespace TrainStationTracker.core.DTO
         public string? Image { get; set; }
 
         public DateTime? Createdat { get; set; }
+
     }
 }

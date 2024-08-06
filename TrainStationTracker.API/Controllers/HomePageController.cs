@@ -36,6 +36,7 @@ namespace TrainStationTracker.API.Controllers
         [HttpPut]
         public async Task UpdateHomePage(Homepage homepage)
         {
+            homepage.Id = 1;
             await _homePageService.UpdateHomePage(homepage);
         }
     }
