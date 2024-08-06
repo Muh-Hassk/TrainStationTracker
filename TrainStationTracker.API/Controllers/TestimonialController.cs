@@ -44,8 +44,8 @@ namespace TrainStationTracker.API.Controllers
         }
 
         [HttpPost]
-        [CheckClaims("RoleId", "1")]
-        public async Task<IActionResult> WriteTestimonial([FromBody] TestimonialDB testimonial)
+       // [CheckClaims("RoleId", "1")]
+        public async Task<IActionResult> WriteTestimonial([FromBody] TestimonialDTO testimonial)
         {
             var userIdString = User.FindFirst("Userid")?.Value;
 
@@ -54,7 +54,7 @@ namespace TrainStationTracker.API.Controllers
                 return Unauthorized("User ID not found in JWT token");
             }
 
-            if (!int.TryParse(userIdString, out int userId))
+            if (!decimal.TryParse(userIdString, out decimal userId))
             {
                 return BadRequest("Invalid user ID format");
             }

@@ -52,18 +52,31 @@ namespace TrainStationTracker.infra.Repository
             }
         }
 
-        public async Task WriteTestimonial(TestimonialDB testimonial)
-        {
-        var UserTest = new Testimonial
-            {
-                Userid = testimonial.Userid,
-                Content = testimonial.Content,
-                Status = "Pending",
-                Createdat = DateTime.Now
-            };
-            _modelContext.Testimonials.Add(UserTest);
+        //public async Task WriteTestimonial(TestimonialDB testimonial)
+        //{
+        //var UserTest = new Testimonial
+        //    {
+        //        Userid = testimonial.Userid,
+        //        Content = testimonial.Content,
+        //        Status = "Pending",
+        //        Createdat = DateTime.Now
+        //    };
+        //    _modelContext.Testimonials.Add(UserTest);
 
-            await _modelContext.SaveChangesAsync();
+        //    await _modelContext.SaveChangesAsync();
+        //}
+        public async Task WriteTestimonial(TestimonialDTO testimonial)
+        {
+            testimonial.Createdat = DateTime.Now;
+            var param = new DynamicParameters();
+            param.Add("content", testimonial.Content, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("user_id", testimonial.Userid, DbType.Decimal, direction: ParameterDirection.Input); 
+            param.Add("created_at", testimonial.Createdat, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            param.Add("status", testimonial.Status, dbType: DbType.String, direction: ParameterDirection.Input);
+
+
+            var result = await _dbContext.Connection.ExecuteAsync("TESTIMONIALS_PACKAGE.CreateTestimonial", param, commandType: CommandType.StoredProcedure);
+
         }
 
         public async Task<List<Testimonial>> GetAllTestimonial()

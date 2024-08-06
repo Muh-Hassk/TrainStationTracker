@@ -14,6 +14,9 @@ namespace TrainStationTracker.infra.Service
     {
 
         private readonly  ITestimonialRepository _testimonialRepository;
+
+        
+
         public TestimonialService(ITestimonialRepository testimonialRepository)
         {
             _testimonialRepository = testimonialRepository;
@@ -38,7 +41,7 @@ namespace TrainStationTracker.infra.Service
             return _testimonialRepository.RejectTestimonial(id);
         }
 
-        public Task WriteTestimonial(TestimonialDB testimonial)
+        public Task WriteTestimonial(TestimonialDTO testimonial)
         {
             return _testimonialRepository.WriteTestimonial(testimonial);
         }
