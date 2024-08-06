@@ -13,7 +13,7 @@ namespace TrainStationTracker.core.IService
         Task AcceptTestimonial(int id);
         Task RejectTestimonial(int id);
 
-        Task WriteTestimonial(TestimonialDB testimonial);
+        Task WriteTestimonial(TestimonialDTO testimonial);
 
         public Task<List<Testimonial>> GetAllApprovedTestimonial();
 
