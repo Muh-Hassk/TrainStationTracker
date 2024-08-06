@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TrainStationTracker.core.Data;
 
 namespace TrainStationTracker.API.Controllers
 {
@@ -8,7 +9,7 @@ namespace TrainStationTracker.API.Controllers
     public class UploadImageController : ControllerBase
     {
         [HttpPost]
-        public string UploadImage()
+        public Trainstation UploadImage()
         {
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
@@ -17,8 +18,9 @@ namespace TrainStationTracker.API.Controllers
             {
                 file.CopyTo(stream);
             }
-
-            return fileName;
+            Trainstation train = new Trainstation();
+            train.Image = fileName;
+            return train;
         }
     }
 }

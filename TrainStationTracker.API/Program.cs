@@ -85,12 +85,11 @@ namespace TrainStationTracker.API
                 app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseCors("policy");
+
             app.UseAuthorization();
 
-            app.UseCors("policy");
             app.MapControllers();
 
             app.Run();
