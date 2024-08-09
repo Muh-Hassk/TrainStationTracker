@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 using System.Configuration;
 using System.Text;
 using TrainStationTracker.core.Data;
+using TrainStationTracker.core.DTO;
 using TrainStationTracker.core.ICommon;
 using TrainStationTracker.core.IRepository;
 using TrainStationTracker.core.IService;
@@ -19,6 +21,9 @@ namespace TrainStationTracker.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            // Add Stripe configuration
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
             // Add services to the container.
 
             builder.Services.AddControllers();
