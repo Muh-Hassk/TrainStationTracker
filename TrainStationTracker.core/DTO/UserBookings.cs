@@ -9,9 +9,8 @@ namespace TrainStationTracker.core.DTO
     public class UserBookings
     {
         public string Username { get; set; } = null!;
-        public decimal Originstationid { get; set; }
-        public decimal Destinationstationid { get; set; } 
-        public string Stationname { get; set; } = null!;
+        public string destination_station { get; set; }
+        public string origin_station { get; set; } 
         public DateTime Departuretime { get; set; }
         public decimal Duratointime { get; set; }
         public DateTime? Bookingtime { get; set; }
