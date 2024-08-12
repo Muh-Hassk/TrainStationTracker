@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,5 +54,12 @@ namespace TrainStationTracker.infra.Repository
             }
         }
 
+        public async Task<List<UserBookings>> GetUserBookings(int id)
+        {
+            var param = new DynamicParameters();
+            param.Add("user_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = await _dbContext.Connection.QueryAsync<UserBookings>("Bookings_Package.GetUserBookings", param, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
     }
 }

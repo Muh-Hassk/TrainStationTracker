@@ -11,6 +11,7 @@ namespace TrainStationTracker.core.IRepository
     public interface IBookingRepository
     {
         Task BookTrip(BookTicket Ticket);
+        Task<List<UserBookings>> GetUserBookings(int id);
 
     }
 }

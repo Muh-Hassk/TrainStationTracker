@@ -11,6 +11,7 @@ namespace TrainStationTracker.core.IService
     public interface IBookingService
     {
         Task BookTrip(BookTicket Ticket);
+        Task<List<UserBookings>> GetUserBookings(int id);
 
     }
 }
