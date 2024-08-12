@@ -23,5 +23,10 @@ namespace TrainStationTracker.infra.Service
         {
             return _bookingRepository.BookTrip(Ticket);
         }
+
+        public Task<List<UserBookings>> GetUserBookings(int id)
+        {
+            return _bookingRepository.GetUserBookings(id);
+        }
     }
 }
