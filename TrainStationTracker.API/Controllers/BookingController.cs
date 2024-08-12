@@ -19,7 +19,7 @@ namespace TrainStationTracker.API.Controllers
         }
 
         [HttpPost]
-        [CheckClaims("RoleId", "1")]
+        [CheckClaims("RoleId", "2")]
         public async Task<IActionResult> BookTrip([FromBody] BookTicket ticket)
         {
             var userIdString = User.FindFirst("Userid")?.Value;
