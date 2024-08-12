@@ -45,5 +45,10 @@ namespace TrainStationTracker.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("{id}")]
+        public async Task<List<UserBookings>> GetUserBookings(int id)
+        {
+            return await _bookingService.GetUserBookings(id);
+        }
     }
 }
