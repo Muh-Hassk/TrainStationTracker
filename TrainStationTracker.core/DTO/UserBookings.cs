@@ -15,6 +15,7 @@ namespace TrainStationTracker.core.DTO
         public decimal Duratointime { get; set; }
         public DateTime? Bookingtime { get; set; }
         public decimal Price { get; set; }
+        public DateTime arrival_time {  get; set; }
         public string Paymentstatus { get; set; } = null!;
     }
 }
