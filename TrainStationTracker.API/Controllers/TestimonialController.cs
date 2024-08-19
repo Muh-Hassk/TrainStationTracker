@@ -54,7 +54,7 @@ namespace TrainStationTracker.API.Controllers
                 return Unauthorized("User ID not found in JWT token");
             }
 
-            if (!decimal.TryParse(userIdString, out decimal userId))
+            if (!int.TryParse(userIdString, out int userId))
             {
                 return BadRequest("Invalid user ID format");
             }
